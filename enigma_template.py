@@ -12,12 +12,16 @@ key = "..."
 
 # user inputs a message and selects a key (or random), the message is then translated using the cipher
 def encode_message():
+    let = 0  # Is what letter it's checking
+    result = ""  # The encoded message will be result
     message = input("What message?: ")
     print(message)
-    key = input("Key?: ")
-    letter = alphabet.index(message[0])
-    message[0] = (((letter) + key) %26)
-    print(message)
+    key = int(input("Key?: "))
+    for x in message:  # repeats code for each letter in the message
+        letter = alphabet.index(message[let])  # grabs the number that letter is equal to (Ex: 4 = d so if grabs 4)
+        result = result + alphabet[((letter + key) %26)]  # %26 makes it if it at z(25) it goes back to a(0)
+        let = let + 1
+    print(result)
 
 # encodes a target file, similarly to encode_message, except now targeting a filename
 def encode_file():
@@ -43,7 +47,7 @@ def main():
               f"[3]: Decode file.\n"
               f"[4]: Exit.")
 
-        selection = input("Choose an option:")
+        selection = input("Choose an option: ")
 
         if selection == "1":
             encode_message()
