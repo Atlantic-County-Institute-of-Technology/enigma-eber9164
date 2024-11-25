@@ -25,12 +25,22 @@ def encode_message():
 
 # encodes a target file, similarly to encode_message, except now targeting a filename
 def encode_file():
-    pass
+    let = 0  # Is what letter it's checking
+    result = ""  # The encoded file will be result
+    file = input("What file?: ")
+    file = open(file)
+    print(file)
+    key = int(input("Key?: "))
+    for x in file:  # repeats code for each letter in the file
+        letter = alphabet.index(file[let])  # grabs the number that letter is equal to (Ex: 4 = d so if grabs 4)
+        result = result + alphabet[((letter + key) % 26)]  # %26 makes it if it at z(25) it goes back to a(0)
+        let = let + 1
+    print(result)
 
 # decodes target file using a user-specified key. If key is unknown, a keypress should
 # call decode_unknown_key()
 def decode_file():
-    pass
+    with open( ) as file:
 
 # runs if the key is unknown. If this is true, print out all possible decoding combinations.
 def decode_unknown_key(filename):
